@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -31,15 +34,17 @@ public class Excursion {
     private String image_URL;
 
     @Column(name = "create_date")
+    @CreationTimestamp
     private Date create_date;
 
     @Column(name = "last_update")
+    @UpdateTimestamp
     private Date last_update;
 
-    // Many map
-    @Column(name = "vacation_id")
+    @ManyToOne
+    @JoinColumn(name = "vacation_id")
     private Vacation vacation;
 
-    //Many Set Map
-    private Set<CartItem> cartitems;
+    @ManyToMany(mappedBy = "excursions")
+    private Set<CartItem> cartItems;
 }
