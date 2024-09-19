@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-//SQL database typo, cancelled = canceled
+// Misspelling - canceled = cancelled
 public enum StatusType {
-    pending, ordered, canceled
+    pending,ordered,canceled;
 }

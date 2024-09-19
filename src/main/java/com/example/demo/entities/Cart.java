@@ -3,18 +3,21 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="carts")
 @Getter
 @Setter
+@NoArgsConstructor
 
 public class Cart {
 
@@ -49,6 +52,9 @@ public class Cart {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItem = new HashSet<>();
 
+    public void add(CartItem cartItem) {
+        this.cartItem.add(cartItem);
+    }
 }

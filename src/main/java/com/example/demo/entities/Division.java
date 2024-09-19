@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +16,7 @@ import java.util.HashSet;
 @Table(name="divisions")
 @Getter
 @Setter
+@NoArgsConstructor
 
 public class Division {
 
@@ -34,18 +36,19 @@ public class Division {
     @UpdateTimestamp
     private Date last_update;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country;
+    //@ManyToOne
+    //@JoinColumn(name = "country_id")
+    //private Country country;
 
-    /* ZyBooks 1.1 Webinar code
+    // ZyBooks 1.1 Webinar code
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
 
-    @Column(name = "country_id")
+    @Column(name="country_id", nullable = false)
     private Long country_id;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division")
     private Set<Customer> customers = new HashSet<>();
@@ -54,5 +57,4 @@ public class Division {
         setCountry_id(country.getId());
         this.country = country;
     }
-    */
 }

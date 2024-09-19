@@ -3,18 +3,21 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="vacations")
 @Getter
 @Setter
+@NoArgsConstructor
 
 public class Vacation {
 
@@ -44,5 +47,5 @@ public class Vacation {
     private Date last_update;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacation")
-    private Set<Excursion> excursions;
+    private Set<Excursion> excursions = new HashSet<>();
 }
