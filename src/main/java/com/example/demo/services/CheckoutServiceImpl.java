@@ -41,12 +41,14 @@ public class CheckoutServiceImpl implements CheckoutService{
         Set<CartItem> cartItems = purchase.getCartItems();
         cartItems.forEach(cartItem -> {
             cartItem.setCart(cart);
-            cart.add(cartItem);
+            //cart.add(cartItem);
         });
+
+        cart.setCartItem(cartItems);
 
         // populate customer with order
         Customer customer = purchase.getCustomer();
-        customer.add(cart);
+        //customer.add(cart);
         cart.setStatus(StatusType.ordered);
 
         // save to the database
